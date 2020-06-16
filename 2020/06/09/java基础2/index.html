@@ -28,7 +28,7 @@
 <meta property="og:description" content="StringBuffer与StringBuilder的区别？ Java中的泛型的理解 Java序列化与反序列化的过程 equals和hashCode方法的关系？ Java和C++的区别有哪些？ 静态与非静态的区别？ Java中equals方法和&#x3D;&#x3D;的区别？">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-09T01:29:27.390Z">
-<meta property="article:modified_time" content="2020-06-13T03:24:34.625Z">
+<meta property="article:modified_time" content="2020-06-15T16:46:48.794Z">
 <meta property="article:author" content="lilywww">
 <meta name="twitter:card" content="summary">
 
@@ -162,7 +162,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-13 04:24:34" itemprop="dateModified" datetime="2020-06-13T04:24:34+01:00">2020-06-13</time>
+                <time title="Modified: 2020-06-15 17:46:48" itemprop="dateModified" datetime="2020-06-15T17:46:48+01:00">2020-06-15</time>
               </span>
 
           
@@ -249,6 +249,14 @@
 <li>实例化方法：属于实例对象，实例化后才会分配内存，必须通过类的实例来引用，不会常驻内存，当实例对象被jvm回收后也跟着消失。</li>
 </ul>
 <p>线程安全：静态方法是共享代码段，静态变量是共享数据段。既然是“共享”就有并发的问题。非静态方法是针对确定的一个对象的，所以不会存在线程安全的问题。</p>
+<h3 id="7-Java中exception和error的区别"><a href="#7-Java中exception和error的区别" class="headerlink" title="7.Java中exception和error的区别"></a>7.Java中exception和error的区别</h3><ul>
+<li>Exception是程序正常运行中<strong>预料到可能会出现的错误</strong>，应该被捕获并进行相应处理，是一种<strong>异常</strong>现象。<strong>编译时异常（受检异常）</strong>表示当前调用的方法体内部抛出了一个异常，所以编译器检测到这段代码在运行时可能会出异常，所以要求我们必须对异常进行相应的处理，可以捕获异常或者抛给上层调用方。<strong>运行时异常（非受检异常）</strong>表示在运行时出现的异常，常见的运行时异常包括：空指针异常，数组越界异常，数字转换异常以及算术异常等。</li>
+<li>Error是正常情况下不可能发生的错误，<strong>Error会导致jvm处于一种不可恢复的状态</strong>，不需要捕获处理，比如OutOfMemoryError</li>
+</ul>
+<h3 id="8-NoClassDefFoundError-和-ClassNotFoundException-区别"><a href="#8-NoClassDefFoundError-和-ClassNotFoundException-区别" class="headerlink" title="8.NoClassDefFoundError 和 ClassNotFoundException 区别"></a>8.NoClassDefFoundError 和 ClassNotFoundException 区别</h3><ul>
+<li>ClassNotFoundException：当我们使用例如Class.forName方法来动态的加载该类的时候，传入了一个类名，但是其并没有在类路径中被找到的时候，就会报ClassNotFoundException异常。<strong>出现这种情况，一般都是类名字传入有误导致的。</strong></li>
+<li>NoClassDefFoundError：大概意思是这样的，如果JVM或者ClassLoader实例尝试加载（可以通过正常的方法调用，也可能是使用new来创建新的对象）类的时候却找不到类的定义。但是<strong>要查找的类在编译的时候是存在的，运行的时候却找不到了</strong>。这个时候就会导致NoClassDefFoundError。出现这种情况，<strong>一般是由于打包的时候漏掉了部分类或者Jar包被篡改已经损坏。</strong></li>
+</ul>
 
     </div>
 
@@ -267,7 +275,10 @@
     <a href="/2020/06/06/java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" rel="prev" title="java集合框架">
       <i class="fa fa-chevron-left"></i> java集合框架
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/14/%E5%A4%9A%E7%BA%BF%E7%A8%8B1/" rel="next" title="多线程1">
+      多线程1 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -326,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-String-StringBuffer和StringBuilder区别"><span class="nav-number">1.</span> <span class="nav-text">1.String,StringBuffer和StringBuilder区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-String长度不可变，StringBuffer和StringBuilder长度可变"><span class="nav-number">1.1.</span> <span class="nav-text">1. String长度不可变，StringBuffer和StringBuilder长度可变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-StringBuilder线程不安全，StringBuffer线程安全"><span class="nav-number">1.2.</span> <span class="nav-text">4.StringBuilder线程不安全，StringBuffer线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-运行速度StringBuiler-gt-StringBuffer-gt-String"><span class="nav-number">1.3.</span> <span class="nav-text">3.运行速度StringBuiler&gt;StringBuffer&gt;String</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-泛型"><span class="nav-number">2.</span> <span class="nav-text">2.泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-序列化与反序列化"><span class="nav-number">3.</span> <span class="nav-text">3.序列化与反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概念"><span class="nav-number">3.1.</span> <span class="nav-text">1.概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-实现过程"><span class="nav-number">3.2.</span> <span class="nav-text">2.实现过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-equals和hashCode方法的关系"><span class="nav-number">4.</span> <span class="nav-text">4.equals和hashCode方法的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-equals方法和-的区别"><span class="nav-number">5.</span> <span class="nav-text">5.equals方法和&#x3D;&#x3D;的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-方法"><span class="nav-number">5.1.</span> <span class="nav-text">1. &#x3D;&#x3D;方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-equals方法："><span class="nav-number">5.2.</span> <span class="nav-text">2.equals方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-static关键字"><span class="nav-number">6.</span> <span class="nav-text">6.static关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-静态变量和实例变量的区别"><span class="nav-number">6.1.</span> <span class="nav-text">1.静态变量和实例变量的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-静态方法跟实例方法："><span class="nav-number">6.2.</span> <span class="nav-text">2.静态方法跟实例方法：</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-String-StringBuffer和StringBuilder区别"><span class="nav-number">1.</span> <span class="nav-text">1.String,StringBuffer和StringBuilder区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-String长度不可变，StringBuffer和StringBuilder长度可变"><span class="nav-number">1.1.</span> <span class="nav-text">1. String长度不可变，StringBuffer和StringBuilder长度可变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-StringBuilder线程不安全，StringBuffer线程安全"><span class="nav-number">1.2.</span> <span class="nav-text">4.StringBuilder线程不安全，StringBuffer线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-运行速度StringBuiler-gt-StringBuffer-gt-String"><span class="nav-number">1.3.</span> <span class="nav-text">3.运行速度StringBuiler&gt;StringBuffer&gt;String</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-泛型"><span class="nav-number">2.</span> <span class="nav-text">2.泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-序列化与反序列化"><span class="nav-number">3.</span> <span class="nav-text">3.序列化与反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概念"><span class="nav-number">3.1.</span> <span class="nav-text">1.概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-实现过程"><span class="nav-number">3.2.</span> <span class="nav-text">2.实现过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-equals和hashCode方法的关系"><span class="nav-number">4.</span> <span class="nav-text">4.equals和hashCode方法的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-equals方法和-的区别"><span class="nav-number">5.</span> <span class="nav-text">5.equals方法和&#x3D;&#x3D;的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-方法"><span class="nav-number">5.1.</span> <span class="nav-text">1. &#x3D;&#x3D;方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-equals方法："><span class="nav-number">5.2.</span> <span class="nav-text">2.equals方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-static关键字"><span class="nav-number">6.</span> <span class="nav-text">6.static关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-静态变量和实例变量的区别"><span class="nav-number">6.1.</span> <span class="nav-text">1.静态变量和实例变量的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-静态方法跟实例方法："><span class="nav-number">6.2.</span> <span class="nav-text">2.静态方法跟实例方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Java中exception和error的区别"><span class="nav-number">7.</span> <span class="nav-text">7.Java中exception和error的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-NoClassDefFoundError-和-ClassNotFoundException-区别"><span class="nav-number">8.</span> <span class="nav-text">8.NoClassDefFoundError 和 ClassNotFoundException 区别</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -339,7 +350,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
